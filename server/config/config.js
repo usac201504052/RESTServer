@@ -17,6 +17,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 let urlDB;
 
 if (process.env.NODE_ENV === 'dev') {
+    // Si esta en el entorno de desarrollo
     urlDB = 'mongodb://localhost:27017/cafe';
 } else {
     urlDB = 'mongodb+srv://javo_12:YVfFFy3xVJnpNCFB@cluster0.c3px8.mongodb.net/cafe';

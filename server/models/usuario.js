@@ -1,13 +1,15 @@
 // Encargado de trabajar el modelo de datos
 
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator'); // Para que valide que un campo o parametro tiene que ser unico y no puede
+// repetirse.
 
 // Roles validos
 let rolesValidos = {
     values: ['ADMIN_ROLE', 'USER_ROLE'],
     message: '{VALUE} no es un rol valido'
 };
+
 // Obtener el cascaron para crear esquemas
 let Schema = mongoose.Schema;
 
@@ -34,7 +36,7 @@ let usuarioSchema = new Schema({
     role: {
         type: String,
         default: 'USER_ROLE',
-        enum: rolesValidos,
+        enum: rolesValidos, // Enumeracion de valores permitidos para este campo.
         required: [true, 'El rol es obligatorio']
     },
     estado: {
@@ -49,6 +51,7 @@ let usuarioSchema = new Schema({
 
 // El password no hay que regresarlo
 // NO HACER FUNCION DE FLECHA
+// El metodo toJSON se llama cuando se intenta imprimir
 usuarioSchema.methods.toJSON = function() {
     let user = this;
     let userObject = user.toObject();
@@ -57,6 +60,7 @@ usuarioSchema.methods.toJSON = function() {
     return userObject;
 }
 
+// Para usar un plugin:
 // Validar campos unicos
 usuarioSchema.plugin(uniqueValidator, { message: '{PATH} debe de ser unico' });
 
