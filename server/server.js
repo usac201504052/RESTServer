@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-// Importar el archivo de rutas.
-app.use(require('./routes/usuario'));
+// Importar el archivo que contiene las rutas. (Global)
+app.use(require('./routes/index'));
 
 // Establecer conexion con base de datos
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true }, (err, res) => {

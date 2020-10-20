@@ -8,8 +8,11 @@ const _ = require('underscore'); // Libreria que expande los alcances de JS
 const Usuario = require('../models/usuario');
 const usuario = require('../models/usuario');
 
+// Importar middleware
+const { verificaToken, verificaAdminRol } = require('../middlewares/autenticacion');
+
 // GET - Obtener registros
-app.get('/usuario', function(req, res) {
+app.get('/usuario', verificaToken, (req, res) => {
 
     // Los parametros opcionales caen en 'query'.
     let desde = req.query.desde || 0;
@@ -43,7 +46,7 @@ app.get('/usuario', function(req, res) {
 });
 
 // POST - para crear registros
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [verificaToken, verificaAdminRol], function(req, res) {
 
     // 'body' - va a aparecer cuando el bodyparser procese cualquier payload que reciban las peticiones.
     let body = req.body;
@@ -77,7 +80,7 @@ app.post('/usuario', function(req, res) {
 
 // PUT - para actualizar registros o datos
 // Necesita recibir el id del usuario que se desea actualizar
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verificaToken, verificaAdminRol], function(req, res) {
 
     let idN = req.params.id;
 
@@ -104,7 +107,7 @@ app.put('/usuario/:id', function(req, res) {
 });
 
 // DELETE - para cambiar el estado de algo pero el registro siempre queda
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verificaToken, verificaAdminRol], function(req, res) {
     // Obtener id del elemento a borrar
     let id = req.params.id;
 
