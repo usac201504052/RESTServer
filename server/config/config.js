@@ -41,5 +41,10 @@ if (process.env.NODE_ENV === 'dev') {
 
 process.env.URLDB = urlDB;
 
+// ========================
+// Google Client ID
+// ========================
+process.env.CLIENT_ID = process.env.CLIENT_ID || '65119283883-6p6co4vg9777ol9qefc7sj3fbj30ii8m.apps.googleusercontent.com';
+
 
 // 'mongodb+srv://cafe-user:YeNQJz5kjca0wCnq@cluster0.c3px8.mongodb.net/cafe'
