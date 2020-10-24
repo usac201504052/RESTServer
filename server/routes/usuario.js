@@ -111,7 +111,7 @@ app.delete('/usuario/:id', [verificaToken, verificaAdminRol], function(req, res)
     // Obtener id del elemento a borrar
     let id = req.params.id;
 
-    // Eliminacion fisica, que el elemento deje de existir
+    // Eliminacion fisica: que el elemento deje de existir
     // Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
 
     // Cambiar el 'estado' del elemento a false
